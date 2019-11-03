@@ -23,7 +23,7 @@ public class ImmutableArrayList {
     }
 
     public ImmutableArrayList addAll(int index, Object[] c) {
-        this.checkIndex2(index);
+        this.checkIndexStrict(index);
 
         if (size == 0) {
             return new ImmutableArrayList(c);
@@ -43,7 +43,7 @@ public class ImmutableArrayList {
     }
 
     public ImmutableArrayList add(int index, Object e) {
-        this.checkIndex2(index);
+        this.checkIndexStrict(index);
 
         Object[] newArrayList = new Object[size + 1];
         System.arraycopy(arrayList, 0, newArrayList, 0, index);
@@ -59,13 +59,13 @@ public class ImmutableArrayList {
     }
 
     public Object get(int index) {
-        this.checkIndex2(index);
+        this.checkIndexStrict(index);
 
         return arrayList[index];
     }
 
     public ImmutableArrayList remove(int index) {
-        this.checkIndex1(index);
+        this.checkIndexUnStrict(index);
 
         Object[] newArrayList = new Object[size - 1];
         System.arraycopy(arrayList, 0, newArrayList, 0, index);
@@ -79,7 +79,7 @@ public class ImmutableArrayList {
     }
 
     public ImmutableArrayList set(int index, Object e) {
-        this.checkIndex1(index);
+        this.checkIndexUnStrict(index);
 
         Object[] newArrayList = new Object[size];
         System.arraycopy(arrayList, 0, newArrayList, 0, size);
@@ -136,13 +136,13 @@ public class ImmutableArrayList {
         return new String(str);
     }
 
-    private void checkIndex1(int index) {
+    private void checkIndexUnStrict(int index) {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException("Wrong index!");
         }
     }
 
-    private void checkIndex2(int index) {
+    private void checkIndexStrict(int index) {
         if (index > size || index < 0) {
             throw new IndexOutOfBoundsException("Wrong index!");
         }

@@ -32,7 +32,7 @@ public class ImmutableLinkedList {
     }
 
     public ImmutableLinkedList addAll(int index, Object[] c) {
-        this.checkIndex2(index);
+        this.checkIndexStrict(index);
 
         if (size == 0) {
             return new ImmutableLinkedList(c);
@@ -53,7 +53,7 @@ public class ImmutableLinkedList {
     }
 
     public ImmutableLinkedList add(int index, Object e) {
-        this.checkIndex2(index);
+        this.checkIndexStrict(index);
 
         Object[] newArrayList = new Object[size + 1];
         Object[] arr = this.toArray();
@@ -70,7 +70,7 @@ public class ImmutableLinkedList {
     }
 
     public Object get(int index) {
-        this.checkIndex1(index);
+        this.checkIndexUnStrict(index);
 
         Node nd = arrayList;
         Object element = nd.getData();
@@ -82,7 +82,7 @@ public class ImmutableLinkedList {
     }
 
     public ImmutableLinkedList remove(int index) {
-        this.checkIndex1(index);
+        this.checkIndexUnStrict(index);
 
         Object[] newArrayList = new Object[size - 1];
         Object[] arr = this.toArray();
@@ -94,7 +94,7 @@ public class ImmutableLinkedList {
     }
 
     public ImmutableLinkedList set(int index, Object e) {
-        this.checkIndex1(index);
+        this.checkIndexUnStrict(index);
 
         Object[] arr = this.toArray();
         arr[index] = e;
@@ -186,13 +186,13 @@ public class ImmutableLinkedList {
         return this.remove(size - 1);
     }
 
-    private void checkIndex1(int index) {
+    private void checkIndexUnStrict(int index) {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException("Wrong index!");
         }
     }
 
-    private void checkIndex2(int index) {
+    private void checkIndexStrict(int index) {
         if (index > size || index < 0) {
             throw new IndexOutOfBoundsException("Wrong index!");
         }
