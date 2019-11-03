@@ -3,7 +3,7 @@ package ua.edu.ucu.collections.immutable;
 public class ImmutableArrayList {
     private Object[] arrayList;
     private int size;
-    private static final int DEFAULT_SIZE = 16;
+    private final static int DEFAULT_SIZE = 16;
 
     public ImmutableArrayList() {
         arrayList = new Object[DEFAULT_SIZE];

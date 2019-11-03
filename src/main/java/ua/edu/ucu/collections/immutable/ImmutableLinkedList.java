@@ -11,13 +11,13 @@ public class ImmutableLinkedList {
 
     public ImmutableLinkedList(Object[] arraySeries) {
         int i = 0;
-        int ind2 = arraySeries.length - 1;
+        int ind = arraySeries.length - 1;
         arrayList = new Node();
         Object[] lst = new Object[arraySeries.length];
 
         for (int k = 0; k < arraySeries.length; k++) {
-            lst[k] = arraySeries[ind2];
-            ind2--;
+            lst[k] = arraySeries[ind];
+            ind--;
         }
 
         for (Object item : lst) {
