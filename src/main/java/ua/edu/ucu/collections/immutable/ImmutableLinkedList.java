@@ -37,7 +37,6 @@ public class ImmutableLinkedList {
         }
 
         if (size == 0) {
-            ImmutableLinkedList newArray = new ImmutableLinkedList(c);
             return new ImmutableLinkedList(c);
         } else {
             Object[] newArrayList = new Object[c.length + size];
@@ -45,7 +44,8 @@ public class ImmutableLinkedList {
 
             System.arraycopy(arr, 0, newArrayList, 0, index);
             System.arraycopy(c, 0, newArrayList, index, c.length);
-            System.arraycopy(arr, index, newArrayList, index + c.length, size - index);
+            System.arraycopy(arr, index, newArrayList, index + c.length,
+                    size - index);
             return new ImmutableLinkedList(newArrayList);
         }
     }
