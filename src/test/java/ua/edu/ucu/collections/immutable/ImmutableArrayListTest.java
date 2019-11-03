@@ -78,6 +78,21 @@ public class ImmutableArrayListTest {
     }
 
     @Test
+    public void testAddAllWithoutIndex() {
+        Object[] array1 = {1, 2, 3, 4, 5};
+        Object[] array2 = {7, 8, 9};
+        Object[] array3 = {1, 2, 3, 4, 5, 7, 8, 9};
+        ImmutableArrayList arrayList = new ImmutableArrayList(array1);
+        ImmutableArrayList result = new ImmutableArrayList(array3);
+        Object[] expResult = result.toArray();
+
+        ImmutableArrayList actual = arrayList.addAll(array2);
+        Object[] actualResult = actual.toArray();
+
+        assertArrayEquals(expResult, actualResult);
+    }
+
+    @Test
     public void testAdd() {
         Object[] array1 = {1, 2, 3, 4, 5};
         Object element = 7;
@@ -115,6 +130,21 @@ public class ImmutableArrayListTest {
 
         arrayList.add(10, element);
 
+    }
+
+    @Test
+    public void testAddWithoutIndex() {
+        Object[] array1 = {1, 2, 3, 4, 5};
+        Object element = 7;
+        Object[] array3 = {1, 2, 3, 4, 5, 7};
+        ImmutableArrayList arrayList = new ImmutableArrayList(array1);
+        ImmutableArrayList result = new ImmutableArrayList(array3);
+        Object[] expResult = result.toArray();
+
+        ImmutableArrayList actual = arrayList.add(element);
+        Object[] actualResult = actual.toArray();
+
+        assertArrayEquals(expResult, actualResult);
     }
 
     @Test

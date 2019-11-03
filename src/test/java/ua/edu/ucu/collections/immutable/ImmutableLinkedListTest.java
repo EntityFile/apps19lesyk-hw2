@@ -67,6 +67,21 @@ public class ImmutableLinkedListTest {
         assertArrayEquals(expResult, actualResult);
     }
 
+    @Test
+    public void testAddAllWithoutIndex() {
+        Object[] array1 = {1, 2, 3, 4, 5};
+        Object[] array2 = {7, 8, 9};
+        Object[] array3 = {1, 2, 3, 4, 5, 7, 8, 9};
+        ImmutableLinkedList arrayList = new ImmutableLinkedList(array1);
+        ImmutableLinkedList result = new ImmutableLinkedList(array3);
+        Object[] expResult = result.toArray();
+
+        ImmutableLinkedList actual = arrayList.addAll(array2);
+        Object[] actualResult = actual.toArray();
+
+        assertArrayEquals(expResult, actualResult);
+    }
+
     @Test(expected = IndexOutOfBoundsException.class)
     public void testAddAllWrongIndex() {
         Object[] array1 = {1, 2, 3, 4, 5};
@@ -115,6 +130,21 @@ public class ImmutableLinkedListTest {
 
         arrayList.add(10, element);
 
+    }
+
+    @Test
+    public void testAddWithoutIndex() {
+        Object[] array1 = {1, 2, 3, 4, 5};
+        Object element = 7;
+        Object[] array3 = {1, 2, 3, 4, 5, 7};
+        ImmutableLinkedList arrayList = new ImmutableLinkedList(array1);
+        ImmutableLinkedList result = new ImmutableLinkedList(array3);
+        Object[] expResult = result.toArray();
+
+        ImmutableLinkedList actual = arrayList.add(element);
+        Object[] actualResult = actual.toArray();
+
+        assertArrayEquals(expResult, actualResult);
     }
 
     @Test
