@@ -23,9 +23,7 @@ public class ImmutableArrayList {
     }
 
     public ImmutableArrayList addAll(int index, Object[] c) {
-        if (index > size || index < 0) {
-            throw new IndexOutOfBoundsException("Wrong index!");
-        }
+        this.checkIndex2(index);
 
         if (size == 0) {
             return new ImmutableArrayList(c);
@@ -45,9 +43,7 @@ public class ImmutableArrayList {
     }
 
     public ImmutableArrayList add(int index, Object e) {
-        if (index > size || index < 0) {
-            throw new IndexOutOfBoundsException("Wrong index!");
-        }
+        this.checkIndex2(index);
 
         Object[] newArrayList = new Object[size + 1];
         System.arraycopy(arrayList, 0, newArrayList, 0, index);
@@ -63,17 +59,13 @@ public class ImmutableArrayList {
     }
 
     public Object get(int index) {
-        if (index > size || index < 0) {
-            throw new IndexOutOfBoundsException("Wrong index!");
-        }
+        this.checkIndex2(index);
 
         return arrayList[index];
     }
 
     public ImmutableArrayList remove(int index) {
-        if (index >= size || index < 0) {
-            throw new IndexOutOfBoundsException("Wrong index!");
-        }
+        this.checkIndex1(index);
 
         Object[] newArrayList = new Object[size - 1];
         System.arraycopy(arrayList, 0, newArrayList, 0, index);
@@ -87,9 +79,7 @@ public class ImmutableArrayList {
     }
 
     public ImmutableArrayList set(int index, Object e) {
-        if (index >= size || index < 0) {
-            throw new IndexOutOfBoundsException("Wrong index!");
-        }
+        this.checkIndex1(index);
 
         Object[] newArrayList = new Object[size];
         System.arraycopy(arrayList, 0, newArrayList, 0, size);
@@ -144,5 +134,17 @@ public class ImmutableArrayList {
         }
 
         return new String(str);
+    }
+
+    private void checkIndex1(int index) {
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException("Wrong index!");
+        }
+    }
+
+    private void checkIndex2(int index) {
+        if (index > size || index < 0) {
+            throw new IndexOutOfBoundsException("Wrong index!");
+        }
     }
 }

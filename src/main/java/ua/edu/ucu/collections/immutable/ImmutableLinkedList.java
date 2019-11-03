@@ -32,9 +32,7 @@ public class ImmutableLinkedList {
     }
 
     public ImmutableLinkedList addAll(int index, Object[] c) {
-        if (index > size || index < 0) {
-            throw new IndexOutOfBoundsException("Wrong index!");
-        }
+        this.checkIndex2(index);
 
         if (size == 0) {
             return new ImmutableLinkedList(c);
@@ -55,9 +53,7 @@ public class ImmutableLinkedList {
     }
 
     public ImmutableLinkedList add(int index, Object e) {
-        if (index > size || index < 0) {
-            throw new IndexOutOfBoundsException("Wrong index!");
-        }
+        this.checkIndex2(index);
 
         Object[] newArrayList = new Object[size + 1];
         Object[] arr = this.toArray();
@@ -74,9 +70,7 @@ public class ImmutableLinkedList {
     }
 
     public Object get(int index) {
-        if (index >= size || index < 0) {
-            throw new IndexOutOfBoundsException("Wrong index!");
-        }
+        this.checkIndex1(index);
 
         Node nd = arrayList;
         Object element = nd.getData();
@@ -88,9 +82,7 @@ public class ImmutableLinkedList {
     }
 
     public ImmutableLinkedList remove(int index) {
-        if (index >= size || index < 0) {
-            throw new IndexOutOfBoundsException("Wrong index!");
-        }
+        this.checkIndex1(index);
 
         Object[] newArrayList = new Object[size - 1];
         Object[] arr = this.toArray();
@@ -102,9 +94,7 @@ public class ImmutableLinkedList {
     }
 
     public ImmutableLinkedList set(int index, Object e) {
-        if (index >= size || index < 0) {
-            throw new IndexOutOfBoundsException("Wrong index!");
-        }
+        this.checkIndex1(index);
 
         Object[] arr = this.toArray();
         arr[index] = e;
@@ -196,4 +186,15 @@ public class ImmutableLinkedList {
         return this.remove(size - 1);
     }
 
+    private void checkIndex1(int index) {
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException("Wrong index!");
+        }
+    }
+
+    private void checkIndex2(int index) {
+        if (index > size || index < 0) {
+            throw new IndexOutOfBoundsException("Wrong index!");
+        }
+    }
 }
